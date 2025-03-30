@@ -6,7 +6,10 @@ class HTMLNode:
         self.props = props if props is not None else {}
 
     def to_html(self):
-        raise NotImplementedError("The method to_html() is not implemented.")
+        raise NotImplementedError(
+            "The method to_html() is not implemented in HTMLNode."
+            "Was this intended to be for a LeafNode?"
+        )
     
     def props_to_html(self):
         return " " + " ".join(f'{key}="{value}"' for key, value in (self.props or {}).items())
