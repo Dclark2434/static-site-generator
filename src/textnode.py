@@ -29,29 +29,29 @@ class TextNode:
         return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
     
 def text_node_to_html_node(text_node):
-    if text_node.type is TextType.BOLD:
+    if text_node.text_type is TextType.BOLD:
         bold_node = LeafNode("b", text_node.text)
         return bold_node
-    elif text_node.type is TextType.TEXT:
+    elif text_node.text_type is TextType.TEXT:
         plain_node = LeafNode(None, text_node.text)
         return plain_node
-    elif text_node.type is TextType.ITALIC:
+    elif text_node.text_type is TextType.ITALIC:
         italic_node = LeafNode("i", text_node.text)
         return italic_node
-    elif text_node.type is TextType.CODE:
+    elif text_node.text_type is TextType.CODE:
         code_node = LeafNode("code", text_node.text)
         return code_node
-    elif text_node.type is TextType.LINK:
+    elif text_node.text_type is TextType.LINK:
         if text_node.url:
             link_node = LeafNode("a", text_node.text, {"href": text_node.url})
             return link_node
         else:
             raise ValueError("URL must be provided for a link text type")
-    elif text_node.type is TextType.IMAGE:
+    elif text_node.text_type is TextType.IMAGE:
         if text_node.url:
             image_node = LeafNode("img", "", {"src": text_node.url, "alt": text_node.text})
             return image_node
         else:
             raise ValueError("URL must be provided for an image text type")
     else:
-        raise ValueError(f"Unsupported text type: {text_node.type}")
+        raise ValueError(f"Unsupported text type: {text_node.text_type}")
